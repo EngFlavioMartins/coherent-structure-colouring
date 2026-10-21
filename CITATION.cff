@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+license: MIT
+message: "If you use this code, please cite the paper below."
+title: "Coherent-structure colouring"
+authors:
+  - family-names: Martins
+    given-names: Flavio A. C.
+preferred-citation:
+  type: article
+  title: "Detection of Vortical Structures in Sparse Lagrangian Data Using Coherent-Structure Colouring"
+  authors:
+    - family-names: Martins
+      given-names: Flavio A. C.
+    - family-names: Sciacchitano
+      given-names: A.
+    - family-names: Rival
+      given-names: D. E.
+  journal: "Experiments in Fluids"
+  volume: 62
+  start: 69
+  year: 2021
+  doi: "10.1007/s00348-021-03135-5"
