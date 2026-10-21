@@ -1,54 +1,41 @@
-"""ParaView (pvpython) render of CSC-coloured Ahmed-body tracks as tubes.
+"""ParaView (pvpython) render of CSC-coloured Ahmed-body tracks in the OpenONDA style.
 
 Usage: pvpython render_tracks.py <tracks.vtp> <output png> <tube radius> [width height]
-The grey panel is the rear face of the body, placed as in the original
-MATLAB figures (draw_truck.m): x = -0.99 D, -1.1 <= y/D <= 0, 0 <= z/D <= 1.2.
-Colour: the selected CSC mode with Crameri's "vik" (trailing vortex red).
+
+Black background, view along the stream. Tracks are tubes coloured by the
+selected CSC mode with signed_dark: tracks in the trailing vortex glow red,
+tracks outside it blue, and undecided tracks fade into the black. The rear
+face of the body (x = -0.99 D, -1.1 <= y/D <= 0, 0 <= z/D <= 1.2, as in the
+original MATLAB figures) is matte grey.
 """
-import json
 import sys
 from pathlib import Path
 
-from paraview.simple import (ColorBy, GetActiveViewOrCreate, GetColorTransferFunction, Plane,
-                             SaveScreenshot, Show, Tube, XMLPolyDataReader)
+HERE = Path(__file__).resolve().parent
+sys.path.insert(0, str(HERE))
+import onda_style as style  # noqa: E402
+from paraview.simple import Plane, Show, Tube, XMLPolyDataReader  # noqa: E402
 
 src, out, radius = Path(sys.argv[1]), Path(sys.argv[2]), float(sys.argv[3])
-width, height = (int(a) for a in (sys.argv[4:6] if len(sys.argv) > 5 else (2400, 1600)))
-HERE = Path(__file__).resolve().parent
+width, height = (int(a) for a in (sys.argv[4:6] if len(sys.argv) > 5 else (1200, 1200)))
 
-view = GetActiveViewOrCreate("RenderView")
-view.ViewSize = [width, height]
-view.OrientationAxesVisibility = 0
-view.UseColorPaletteForBackground = 0
-view.Background = [1, 1, 1]
-view.EnableRayTracing = 1
-view.BackEnd = "OSPRay raycaster"
-view.SamplesPerPixel = 32
-view.AmbientSamples = 8
-
+view = style.setup_view(width, height)
+C_RANGE = 1.35      # CSC spans [-1, 1]; the wider map range keeps both ends saturated, not pastel
+lut = style.lut("csc", "signed_dark", -C_RANGE, C_RANGE)
 tubes = Tube(Input=XMLPolyDataReader(FileName=[str(src)]))
 tubes.Radius = radius
 tubes.NumberofSides = 12
 d = Show(tubes, view)
-ColorBy(d, ("POINTS", "csc"))
-lut = GetColorTransferFunction("csc")
-lut.RGBPoints = json.loads((HERE / "vik.json").read_text())["vik"]
-lut.ColorSpace = "RGB"
-lut.AutomaticRescaleRangeMode = "Never"
-d.SetScalarBarVisibility(view, False)
-d.Specular, d.SpecularPower = 0.3, 30
-lut.RescaleTransferFunction(-1.0, 1.0)
+style.mapped(d, "csc", lut, roughness=0.3)
+lut.RescaleTransferFunction(-C_RANGE, C_RANGE)
 
 rear = Plane(Origin=[-0.99, -1.1, 0.0], Point1=[-0.99, 0.0, 0.0], Point2=[-0.99, -1.1, 1.2])
-d = Show(rear, view)
-d.ColorArrayName = ["POINTS", ""]
-d.AmbientColor = d.DiffuseColor = [0.6, 0.62, 0.65]
-d.Opacity = 0.85
+style.solid(Show(rear, view), style.GREY, roughness=0.5, opacity=0.45)
 
 view.CameraPosition = [10.0, -0.2, 1.3]
 view.CameraFocalPoint = [0.0, -0.2, 1.3]
 view.CameraViewUp = [0, 0, 1]
 view.CameraParallelProjection = 1
 view.CameraParallelScale = 1.08
-SaveScreenshot(str(out), view, ImageResolution=[width, height], TransparentBackground=0)
+style.save(view, out, width, height)
 print(out)

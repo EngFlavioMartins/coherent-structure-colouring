@@ -13,7 +13,6 @@ import json
 import sys
 from pathlib import Path
 
-import cmcrameri.cm as cmc
 import numpy as np
 import pyvista as pv
 from scipy.io import loadmat
@@ -51,6 +50,3 @@ for name, pick in sets.items():
     summary[name] = {"tracks": int(len(pick)), "mode": best, "r_abs_omega_x": round(float(corr[best] * sign), 2)}
     print(f"{name}: {len(pick)} tracks, mode {best}, r(|omega_x|) = {corr[best] * sign:+.2f}")
 (OUT / "csc_summary.json").write_text(json.dumps(summary, indent=1))
-# Crameri "vik" for ParaView: vortex (positive) red, outside blue
-(Path(__file__).parent / "vik.json").write_text(json.dumps(
-    {"vik": [float(v) for q in np.linspace(0, 1, 65) for v in (2 * q - 1, *cmc.vik(q)[:3])]}))
