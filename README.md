@@ -1,5 +1,9 @@
 # Coherent-structure colouring
 
+**Coherent-structure colouring of sparse particle tracks.**
+
+![Particle tracks measured behind an Ahmed body, seen along the stream, for sparse and dense seeding; tracks in the trailing vortex are coloured red](docs/assets/render.webp)
+
 Coherent-structure colouring (CSC) of sparse Lagrangian particle tracks, in Python. It accompanies
 
 > F. A. C. Martins, A. Sciacchitano and D. E. Rival (2021). Detection of vortical structures in sparse Lagrangian data using coherent-structure colouring. *Experiments in Fluids* 62, 69. [doi:10.1007/s00348-021-03135-5](https://doi.org/10.1007/s00348-021-03135-5)
@@ -52,6 +56,12 @@ python scripts/render/compose_pair.py outputs/render/panel_sparse.png outputs/re
 ```
 
 The image shows near-wake tracks seen along the stream. On the left is a sparse set of 400 tracks, and on the right all 1197. CSC is computed separately for each set, and the vortex mode is selected against |ω<sub>x</sub>| from the dense set. Colour is the selected mode (Crameri `vik`): tracks in the trailing vortex are red. The grey panel is the rear face of the body.
+
+## Citing
+
+This code implements the method of F. A. C. Martins, A. Sciacchitano and D. E. Rival (2021), Detection of vortical structures in sparse Lagrangian data using coherent-structure colouring, *Experiments in Fluids* 62, 69, [doi:10.1007/s00348-021-03135-5](https://doi.org/10.1007/s00348-021-03135-5).
+
+GitHub's *Cite this repository* button uses [CITATION.cff](CITATION.cff).
 
 ## Licence
 

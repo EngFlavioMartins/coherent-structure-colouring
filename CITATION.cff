@@ -5,6 +5,8 @@ title: "Coherent-structure colouring"
 authors:
   - family-names: Martins
     given-names: Flavio A. C.
+    orcid: https://orcid.org/0000-0002-1374-5760
+repository-code: "https://github.com/EngFlavioMartins/coherent-structure-colouring"
 preferred-citation:
   type: article
   title: "Detection of Vortical Structures in Sparse Lagrangian Data Using Coherent-Structure Colouring"
