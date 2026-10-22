@@ -1,5 +1,12 @@
 # Coherent-structure colouring
 
+<p align="center">
+  <a href="https://doi.org/10.1007/s00348-021-03135-5"><img src="https://img.shields.io/badge/paper-10.1007%2Fs00348--021--03135--5-1F6FEB" alt="paper: 10.1007/s00348-021-03135-5"></a>
+  <a href="https://www.python.org/"><img src="https://img.shields.io/badge/python-3.10%2B-3776AB?logo=python&logoColor=white" alt="python: 3.10+"></a>
+  <a href="https://github.com/EngFlavioMartins/coherent-structure-colouring/blob/HEAD/LICENSE"><img src="https://img.shields.io/badge/license-MIT-2E7D32" alt="license: MIT"></a>
+  <a href="https://engflaviomartins.github.io/#work-csc"><img src="https://img.shields.io/badge/website-research%20page-15212B" alt="website: research page"></a>
+</p>
+
 **Find vortices in sparse particle tracks.**
 
 <p align="center"><img src="docs/assets/render.webp" width="560" alt="Particle tracks measured behind an Ahmed body, seen along the stream, for sparse and dense seeding; tracks in the trailing vortex glow red"></p>
