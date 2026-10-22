@@ -17,7 +17,7 @@ import onda_style as style  # noqa: E402
 from paraview.simple import Plane, Show, Tube, XMLPolyDataReader  # noqa: E402
 
 src, out, radius = Path(sys.argv[1]), Path(sys.argv[2]), float(sys.argv[3])
-width, height = (int(a) for a in (sys.argv[4:6] if len(sys.argv) > 5 else (1200, 1200)))
+width, height = (int(a) for a in (sys.argv[4:6] if len(sys.argv) > 5 else (1800, 1800)))
 
 view = style.setup_view(width, height)
 C_RANGE = 1.35      # CSC spans [-1, 1]; the wider map range keeps both ends saturated, not pastel

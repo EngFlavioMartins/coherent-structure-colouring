@@ -2,7 +2,7 @@
 
 **Find vortices in sparse particle tracks.**
 
-![Particle tracks measured behind an Ahmed body, seen along the stream, for sparse and dense seeding; tracks in the trailing vortex glow red](docs/assets/render.webp)
+<p align="center"><img src="docs/assets/render.webp" width="560" alt="Particle tracks measured behind an Ahmed body, seen along the stream, for sparse and dense seeding; tracks in the trailing vortex glow red"></p>
 
 Coherent-structure colouring (CSC) gives each particle track a value from how its distance to every other track changes in time; tracks that move together get similar values. This Python version also picks the eigenvector that separates the vortex (`select_mode`), because on sparse measured tracks the classical leading eigenvector mostly separates fast from slow fluid. The repository includes Ahmed-body tracks from the paper's experiment.
 
