@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-license: MIT
+license: Apache-2.0
 message: "If you use this code, please cite the paper below."
 title: "Coherent-structure colouring"
 abstract: "Coherent-structure colouring (CSC) of sparse Lagrangian particle tracks in Python: find vortices in PTV data, with Ahmed-body measurements (Martins, Sciacchitano & Rival, Exp. Fluids 2021)."
